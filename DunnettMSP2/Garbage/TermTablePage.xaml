@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:DunnettMSP2.ViewModels"
+             xmlns:models="clr-namespace:DunnettMSP2.Models"
+             x:Class="DunnettMSP2.Views.TermTablePage"
+             x:DataType="viewmodels:TermTableViewModel"
+             Title="Term Table Data">
+    <ContentPage.BindingContext>
+        <viewmodels:TermTableViewModel/>
+    </ContentPage.BindingContext>
+    <CollectionView ItemsSource="{Binding Terms}">
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="models:Term">
+                <ScrollView Orientation="Horizontal">
+                    <Frame>
+                        <StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Id}"/>
+                                <Label Text="{Binding Title}"/>
+                                <Label Text="{Binding StartDate}"/>
+                                <Label Text="{Binding EndDate}"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                </ScrollView>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>

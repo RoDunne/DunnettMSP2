@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:DunnettMSP2.ViewModels"
+             xmlns:models="clr-namespace:DunnettMSP2.Models"
+             x:Class="DunnettMSP2.Views.CourseSearchPage"
+             x:DataType="viewmodels:CourseSearchViewModel"
+             Title="Course Search">
+    <ContentPage.BindingContext>
+        <viewmodels:CourseSearchViewModel/>
+    </ContentPage.BindingContext>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackLayout Grid.Row="0">
+            <Entry Text="{Binding SearchField}" Placeholder="Enter a Course Name"/>
+            <Button Text="Search" Command="{Binding SearchCommand}" HorizontalOptions="Center" WidthRequest="300"/>
+        </StackLayout>
+        <CollectionView ItemsSource="{Binding Courses}"
+                        SelectionMode="None"
+                        EmptyView="No courses to display."
+                        Margin="20"
+                        Grid.Row="1">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="10"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Course">
+                    <Frame CornerRadius="20"
+                        HasShadow="True"
+                        BorderColor="DarkGreen"
+                        BackgroundColor="PaleGreen">
+                        <StackLayout>
+                            <Label Text="{Binding Title}" FontSize="Medium"/>
+                            <Label Text="{Binding Status}"/>
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:DunnettMSP2.ViewModels"
+             x:Class="DunnettMSP2.Views.UserSettingsPage"
+             x:DataType="viewmodels:UserSettingsViewModel"
+             Title="User Settings and Utilities">
+    <ContentPage.BindingContext>
+        <viewmodels:UserSettingsViewModel/>
+    </ContentPage.BindingContext>
+    
+    <StackLayout Margin="10">
+        <Label Text="Settings" FontSize="Large"/>
+        <Grid Margin="15, 0, 0, 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="50"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" Text="Require Password On Startup" FontSize="Medium"/>
+            <CheckBox Grid.Column="1" Grid.Row="0" IsChecked="{Binding RequirePasswordOnStartupCheckbox}"/>
+            <Label Grid.Column="0" Grid.Row="1" Text="Allow Notifications" FontSize="Medium"/>
+            <CheckBox Grid.Column="1" Grid.Row="1" IsChecked="{Binding AllowNotificationsCheckbox}"/>
+        </Grid>
+        <Label/>
+        <Label Text="Utilities" FontSize="Large"/>
+        <Button Text="Course Search" HorizontalOptions="Center" WidthRequest="300" Command="{Binding CourseSearchCommand}"/>
+        <Button Text="Check Notifications" HorizontalOptions="Center" WidthRequest="300" Command="{Binding CheckNotificationsCommand}"/>
+        <Button Text="Romantic Date Report" HorizontalOptions="Center" WidthRequest="300" Command="{Binding DateReportCommand}"/>
+    </StackLayout>
+</ContentPage>

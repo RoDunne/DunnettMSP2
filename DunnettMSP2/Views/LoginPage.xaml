@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:DunnettMSP2.ViewModels"
+             x:Class="DunnettMSP2.Views.LoginPage"
+             x:DataType="viewmodels:LoginViewModel"
+             Title="Login"
+             Shell.FlyoutBehavior="Disabled">
+    <ContentPage.BindingContext>
+        <viewmodels:LoginViewModel/>
+    </ContentPage.BindingContext>
+    <StackLayout Margin="20">
+        <Label Text="{Binding InfoLabel}"/>
+        <Label/>
+        <Entry Text="{Binding Username}" Placeholder="Enter a Username" IsEnabled="{Binding FirstLogin}"/>
+        <Entry IsPassword="True" Text="{Binding Password}" Placeholder="Enter a Password"/>
+        <Button Text="{Binding SaveButtonText}" Command="{Binding SaveCommand}"/>
+    </StackLayout>
+</ContentPage>

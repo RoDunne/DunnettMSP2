@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:DunnettMSP2.ViewModels"
+             x:Class="DunnettMSP2.Views.TermAddPage"
+             x:DataType="viewmodels:TermAddViewModel"
+             Title="Add Term Page">
+    <ContentPage.BindingContext>
+        <viewmodels:TermAddViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save" Command="{Binding SaveTermCommand}"/>
+    </ContentPage.ToolbarItems>
+
+    <StackLayout Margin="20">
+        <Entry  Placeholder="Term title" Text="{Binding Title}"/>
+        <Label/>
+        <Label Text="Start Date" VerticalTextAlignment="Center"/>
+        <DatePicker HorizontalOptions="FillAndExpand" Date="{Binding StartTime}"/>
+        <Label/>
+        <Label Text="End Date" VerticalTextAlignment="Center"/>
+        <DatePicker HorizontalOptions="FillAndExpand" Date="{Binding EndTime}"/>
+    </StackLayout>
+</ContentPage>
+
+   
+   

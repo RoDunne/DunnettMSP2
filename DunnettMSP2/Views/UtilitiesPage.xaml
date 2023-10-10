@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:DunnettMSP2.ViewModels"
+             x:Class="DunnettMSP2.Views.UtilitiesPage"
+             Title="Developer Utilities"
+             x:DataType="viewmodels:UtilitiesViewModel">
+    <ContentPage.BindingContext>
+        <viewmodels:UtilitiesViewModel/>
+    </ContentPage.BindingContext>
+    <StackLayout>
+        <Button Text="Clear Database" HorizontalOptions="Center" WidthRequest="300"  Command="{Binding ClearDatabaseCommand}"/>
+        <Button Text="Load Sample Data" HorizontalOptions="Center" WidthRequest="300" Command="{Binding LoadSampleDataCommand}"/>
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:DunnettMSP2.ViewModels"
+             xmlns:models="clr-namespace:DunnettMSP2.Models"
+             x:Class="DunnettMSP2.Views.TermDetailsPage"
+             x:DataType="viewmodels:TermDetailsViewModel"
+             x:Name="TermDetails"
+             Title="Term Details">
+    <ContentPage.BindingContext>
+        <viewmodels:TermDetailsViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Edit Term" Command="{Binding EditTermCommand}"/>
+    </ContentPage.ToolbarItems>
+
+    <StackLayout>
+        <StackLayout Padding="0" Margin="20">
+            <Label Text="{Binding TermTitle}" VerticalTextAlignment="Center" FontSize="Medium"/>
+            <Label Text="{Binding TermStart}" VerticalTextAlignment="Center"/>
+            <Label Text="{Binding TermEnd}" VerticalTextAlignment="Center"/>
+            <Button Text="Add Course" Command="{Binding AddCourseCommand}" HorizontalOptions="Start" WidthRequest="150" HeightRequest="60"/>
+        </StackLayout>
+        
+        <CollectionView ItemsSource="{Binding Courses}" 
+                        SelectionMode="Single"
+                        EmptyView="No courses to display."
+                        Margin="20">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="10"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Course">
+                    <Frame CornerRadius="20"
+                           HasShadow="True"
+                           BorderColor="DarkGreen"
+                           BackgroundColor="PaleGreen">
+                        <StackLayout Orientation="Horizontal">
+                            <StackLayout>
+                                <Label Text="{Binding Title}" FontSize="Medium"/>
+                                <Label Text="{Binding Status}"/>
+                            </StackLayout>
+                            <Button Text="Delete"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:TermDetailsViewModel}},Path=DeleteCourseCommand}"
+                                    CommandParameter="{Binding .}"
+                                    WidthRequest="120" 
+                                    HeightRequest="60" 
+                                    HorizontalOptions="EndAndExpand"
+                                    BackgroundColor="MintCream"/>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:TermDetailsViewModel}},Path=CourseTappedCommand}"
+                                            CommandParameter="{Binding .}" />
+                        </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>

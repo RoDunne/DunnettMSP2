@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:DunnettMSP2.ViewModels"
+             x:Class="DunnettMSP2.Views.AddDatePage"
+             x:DataType="viewmodels:AddDateViewModel"
+             Title="Add Date">
+    <ContentPage.BindingContext>
+        <viewmodels:AddDateViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save" Command="{Binding SaveDateCommand}"/>
+    </ContentPage.ToolbarItems>
+
+    <StackLayout Margin="20">
+        <Entry Text="{Binding RomanticDateName}" Placeholder="Date name"/>
+        <Entry Text="{Binding RomanticDateLocation}" Placeholder="Date location"/>
+        <DatePicker Date="{Binding RomanticDateDate}"/>
+        <TimePicker Time="{Binding RomanticDateTime}"/>
+        <Entry Text="{Binding RomanticDatePhone}" Placeholder="Date phone number"/>
+    </StackLayout>
+</ContentPage>

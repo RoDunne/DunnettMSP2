@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:DunnettMSP2.ViewModels"
+             x:Class="DunnettMSP2.Views.DateReportPage"
+             xmlns:models="clr-namespace:DunnettMSP2.Models"
+             x:DataType="viewmodels:DateReportViewModel"
+             Title="Romantic Date Report">
+    <ContentPage.BindingContext>
+        <viewmodels:DateReportViewModel/>
+    </ContentPage.BindingContext>
+        
+    <CollectionView ItemsSource="{Binding RomanticDates}"
+            Margin="20"
+            EmptyView="No dates to display."
+            SelectionMode="None">
+        <CollectionView.ItemsLayout>
+            <GridItemsLayout Orientation="Vertical"/>
+        </CollectionView.ItemsLayout>
+        <CollectionView.Header>
+        <Grid ColumnSpacing="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="110"/>
+            </Grid.ColumnDefinitions>
+            <Label Text="Please turn your device sideways." Grid.ColumnSpan="5"/>
+            <Label Grid.Row="1" Grid.Column="0" Text="Name" FontAttributes="Bold"/>
+            <Label Grid.Row="1" Grid.Column="1" Text="Date" FontAttributes="Bold"/>
+            <Label Grid.Row="1" Grid.Column="2" Text="Time" FontAttributes="Bold"/>
+            <Label Grid.Row="1" Grid.Column="3" Text="Location" FontAttributes="Bold"/>
+            <Label Grid.Row="1" Grid.Column="4" Text="Phone #" FontAttributes="Bold"/>
+        </Grid>
+    </CollectionView.Header>
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="models:RomanticDate">
+                <Grid ColumnSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="110"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Text="{Binding Name}"/>
+                    <Label Grid.Column="1" Text="{Binding StartDateAndTime, StringFormat='{0:d}'}"/>
+                    <Label Grid.Column="2" Text="{Binding StartDateAndTime, StringFormat='{0:t}'}"/>
+                    <Label Grid.Column="3" Text="{Binding Location}"/>
+                    <Label Grid.Column="4" Text="{Binding PhoneNumber}"/>
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+        <CollectionView.Footer>
+            <StackLayout>
+                <Label/>
+                <Label Text="{Binding ReportTimeString}" HorizontalOptions="Center"/>
+            </StackLayout>
+        </CollectionView.Footer>
+    </CollectionView>
+</ContentPage>

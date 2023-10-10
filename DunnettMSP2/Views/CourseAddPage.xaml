@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:DunnettMSP2.ViewModels"
+             x:Class="DunnettMSP2.Views.CourseAddPage"
+             x:DataType="viewmodels:CourseAddViewModel"
+             Title="Course Add">
+    <ContentPage.BindingContext>
+        <viewmodels:CourseAddViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save" Command="{Binding SaveCourseCommand}"/>
+    </ContentPage.ToolbarItems>
+    
+    <ScrollView Margin="20">
+        <StackLayout Spacing="10">
+            <Label Text="Course Info" FontSize="Large" FontAttributes="Bold"/>
+            <Entry Placeholder="Course Title" Text="{Binding CourseTitle}"/>
+            <DatePicker Date="{Binding CourseStartDate}"/>
+            <DatePicker Date="{Binding CourseEndDate}"/>
+            <Picker Title="Choose Status" SelectedItem="{Binding CourseStatus}">
+                <Picker.Items>
+                    <x:String>Enrolled</x:String>
+                    <x:String>Planned</x:String>
+                    <x:String>Completed</x:String>
+                    <x:String>Dropped</x:String>
+                    <x:String>Waitlisted</x:String>
+                </Picker.Items>
+            </Picker>
+            <Editor AutoSize="TextChanges" Placeholder="Optional notes" Text="{Binding CourseOptionalNotes}"/>
+            <Grid>
+                <Label Grid.Column="0" Text="Start/End Notifications"/>
+                <Switch Grid.Column="1" IsToggled="{Binding CourseNotifications}" HorizontalOptions="Start"/>
+            </Grid>
+            <Label/>
+            <Label FontSize="Large" FontAttributes="Bold" Text="Instructor"/>
+            <Entry Placeholder="Name" Text="{Binding InstructorName}"/>
+            <Entry Placeholder="Email" Text="{Binding InstructorEmail}"/>
+            <Entry Placeholder="Phone #" Text="{Binding InstructorPhone}"/>
+            <Label/>
+            <Label FontSize="Large" FontAttributes="Bold" Text="Assessments"/>
+            <Label FontSize="Medium" Text="Performance Assessment"/>
+            <Entry Placeholder="Title" Text="{Binding PerformanceAssessmentTitle}"/>
+            <DatePicker Date="{Binding PerformanceAssessmentDueDate}"/>
+            <Grid>
+                <Label Grid.Column="0" Text="DueDate Notification"/>
+                <Switch Grid.Column="1" HorizontalOptions="Start" IsToggled="{Binding PerformanceAssessmentNotification}"/>
+            </Grid>
+            <Label FontSize="Medium" Text="Objective Assessment"/>
+            <Entry Placeholder="Title" Text="{Binding ObjectiveAssessmentTitle}"/>
+            <DatePicker Date="{Binding ObjectiveAssessmentDueDate}"/>
+            <Grid>
+                <Label Grid.Column="0" Text="DueDate Notification"/>
+                <Switch Grid.Column="1" HorizontalOptions="Start" IsToggled="{Binding ObjectiveAssessmentNotification}"/>
+            </Grid>
+            <Label/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

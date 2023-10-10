@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:DunnettMSP2.ViewModels"
+             x:DataType="viewmodels:TermEditViewModel"
+             x:Class="DunnettMSP2.Views.TermEditPage"
+             Title="Term Edit">
+    <ContentPage.BindingContext>
+        <viewmodels:TermEditViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save Term" Command="{Binding SaveTermCommand}"/>
+    </ContentPage.ToolbarItems>
+    
+    <StackLayout Padding="0" Margin="20">
+        <Entry Placeholder="Term title" Text="{Binding TermTitle}"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" Text="Start Date" VerticalTextAlignment="Center"/>
+            <DatePicker Grid.Column="1" Grid.Row="0" HorizontalOptions="FillAndExpand" Date="{Binding TermStart}"/>
+            <Label  Grid.Column="0" Grid.Row="1" Text="End Date" VerticalTextAlignment="Center"/>
+            <DatePicker Grid.Column="1" Grid.Row="1" HorizontalOptions="FillAndExpand" Date="{Binding TermEnd}"/>
+        </Grid>
+    </StackLayout>
+</ContentPage>

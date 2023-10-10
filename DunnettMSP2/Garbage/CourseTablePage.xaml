@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:DunnettMSP2.ViewModels"
+             xmlns:models="clr-namespace:DunnettMSP2.Models"
+             x:Class="DunnettMSP2.Views.CourseTablePage"
+             x:DataType="viewmodels:CourseTableViewModel"
+             Title="Course Table Data">
+    <ContentPage.BindingContext>
+        <viewmodels:CourseTableViewModel/>
+    </ContentPage.BindingContext>
+    <CollectionView ItemsSource="{Binding Courses}">
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="models:Course">
+                <ScrollView Orientation="Horizontal">
+                    <Frame>
+                        <StackLayout>
+                        
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Id}"/>
+                                    <Label Text="{Binding TermId}"/>
+                                    <Label Text="{Binding InstructorId}"/>
+                                    <Label Text="{Binding Title}"/>
+                                    <Label Text="{Binding StartDate}"/>
+                                    <Label Text="{Binding EndDate}"/>
+                                    <Label Text="{Binding Status}"/>
+                                    <Label Text="{Binding OptionalNotes}"/>
+                                    <Label Text="{Binding Notifications}"/>
+                                </StackLayout>
+                        
+                        </StackLayout>
+                    </Frame>
+                </ScrollView>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+
+    </CollectionView>
+</ContentPage>

@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:DunnettMSP2.ViewModels"
+             xmlns:models="clr-namespace:DunnettMSP2.Models"
+             x:Class="DunnettMSP2.Views.TermOverviewPage"
+             x:DataType="viewmodels:TermOverviewViewModel"
+             x:Name="TermOverview"
+             Title="Terms Overview">
+    <ContentPage.BindingContext>
+        <viewmodels:TermOverviewViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add Term" Command="{Binding AddTermCommand}"/>
+    </ContentPage.ToolbarItems>
+
+    <CollectionView ItemsSource="{Binding Terms}"
+                    Margin="20" 
+                    EmptyView="No terms to display."
+                    SelectionMode="Single">
+        <CollectionView.ItemsLayout>
+            <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="10"/>
+        </CollectionView.ItemsLayout>
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="models:Term">
+                <Frame CornerRadius="20"
+                       HasShadow="True"
+                       BorderColor="MidnightBlue"
+                       BackgroundColor="PowderBlue">
+                    <StackLayout Padding="5" Orientation="Horizontal">
+                        <Label Text="{Binding Title}" FontSize="Medium"/>
+                        <Button Text="Delete" 
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:TermOverviewViewModel}},Path=DeleteTermCommand}"
+                                    CommandParameter="{Binding .}"
+                                    WidthRequest="120" 
+                                    HeightRequest="60" 
+                                    HorizontalOptions="EndAndExpand"
+                                    BackgroundColor="GhostWhite"/>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:TermOverviewViewModel}},Path=TermTappedCommand}"
+                                                      CommandParameter="{Binding .}" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </Frame>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>

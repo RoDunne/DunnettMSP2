@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:DunnettMSP2.ViewModels"
+             xmlns:models="clr-namespace:DunnettMSP2.Models"
+             x:Class="DunnettMSP2.Views.InstructorTablePage"
+             x:DataType="viewmodels:InstructorTableViewModel"
+             Title="Instructor Table Data">
+    <ContentPage.BindingContext>
+        <viewmodels:InstructorTableViewModel/>
+    </ContentPage.BindingContext>
+    <CollectionView ItemsSource="{Binding Instructors}">
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="models:Instructor">
+                <ScrollView Orientation="Horizontal">
+                    <Frame>
+                        <StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Id}"/>
+                                <Label Text="{Binding Name}"/>
+                                <Label Text="{Binding Email}"/>
+                                <Label Text="{Binding Phone}"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                </ScrollView>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>

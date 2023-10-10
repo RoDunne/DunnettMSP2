@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:DunnettMSP2.ViewModels"
+             x:Class="DunnettMSP2.Views.CourseDetailsPage"
+             x:DataType="viewmodels:CourseDetailsViewModel"
+             Title="Course Details">
+    <ContentPage.BindingContext>
+        <viewmodels:CourseDetailsViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Edit Course" Command="{Binding EditCourseCommand}"/>
+    </ContentPage.ToolbarItems>
+    <ScrollView Margin="10">
+        <StackLayout>
+            <Label Text="Course Info" FontSize="Medium" FontAttributes="Bold"/>
+            <Label Text="{Binding CourseTitle}" FontSize="18"/>
+            <Label Text="{Binding CourseStartDate}"/>
+            <Label Text="{Binding CourseEndDate}"/>
+            <Label Text="{Binding CourseStatus}"/>
+            <Label Text="{Binding CourseOptionalNotes}"/>
+            <Button Text="Share Notes" HorizontalOptions="Center" WidthRequest="250" Command="{Binding ShareNotesCommand}"/>
+            <Label Text="{Binding CourseNotificationText}"/>
+            <Label/>
+            <Label Text="Instructor" FontSize="Medium" FontAttributes="Bold"/>
+            <Label Text="{Binding InstructorName}"/>
+            <Label Text="{Binding InstructorEmail}"/>
+            <Label Text="{Binding InstructorPhone}"/>
+            <Label/>
+            <Label Text="Assessments" FontSize="Medium" FontAttributes="Bold"/>
+            <Label Text="Performance Assessment" FontSize="18"/>
+            <Label Text="{Binding PerformanceAssessmentTitle}"/>
+            <Label Text="{Binding PerformanceAssessmentDueDate}"/>
+            <Label Text="{Binding PerformanceAssessmentNotificationText}"/>
+            <Label Text="Objective Assessment" FontSize="18"/>
+            <Label Text="{Binding ObjectiveAssessmentTitle}"/>
+            <Label Text="{Binding ObjectiveAssessmentDueDate}"/>
+            <Label Text="{Binding ObjectiveAssessmentNotificationText}"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
